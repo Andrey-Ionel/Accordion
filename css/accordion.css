@@ -33,7 +33,7 @@
 .body{
     padding: 10px;
     animation-name: open;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-timing-function: ease-out;
 }
 @keyframes open {
