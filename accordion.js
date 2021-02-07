@@ -18,10 +18,8 @@ class Accordion {
     }
 
     init() {
-        const accordionHeadings = this.list.querySelectorAll('.title');
-        const accordionBodyContent = this.list.querySelectorAll('.body');
-        this.headings = accordionHeadings;
-        this.bodyContent = accordionBodyContent;
+        this.headings = this.list.querySelectorAll('.title');
+        this.bodyContent = this.list.querySelectorAll('.body');
 
         this.bodyContent.forEach((body) => {
             body.hidden = true;
@@ -30,28 +28,27 @@ class Accordion {
 
     createEventListener() {
         this.list.addEventListener("click", (event) => {
-            if (!event.target.classList.contains('title')) {
-                event.preventDefault();
-            } else {
-                const eventTargetHeading = event.target.classList;
+            if (event.target.classList.contains('title')) {
+                const eventTargetHeading = event.target;
                 this.setActiveTitle(eventTargetHeading);
 
                 const eventTargetBody = event.target.nextElementSibling;
                 this.showAndHideContent(eventTargetBody);
             }
+
         });
     }
 
     setActiveTitle(heading) {
 
-        if (heading.contains('accordion-active')) {
-            heading.remove('accordion-active');
+        if (heading.classList.contains('accordion-active')) {
+            heading.classList.remove('accordion-active');
         } else {
             this.headings.forEach((title) => {
                 title.classList.remove('accordion-active');
             });
 
-            heading.add('accordion-active');
+            heading.classList.add('accordion-active');
         }
 
     }
